@@ -29,7 +29,7 @@ PenCursorEffectConfig::PenCursorEffectConfig(QObject *parent, const KPluginMetaD
     
     auto config = KSharedConfig::openConfig(QStringLiteral("pencursorrc"));
     auto group = config->group(QStringLiteral("General"));
-    QString cursorPath = group.readEntry("CursorPath", "/usr/share/kwin/effects/pen-point-cursor.svg");
+    QString cursorPath = group.readEntry("CursorPath", "/usr/share/kwin/effects/kwin_pen_cursor/pen-point-cursor.svg");
     m_urlRequester->setUrl(QUrl::fromLocalFile(cursorPath));
     
     connect(m_urlRequester, &KUrlRequester::textChanged, this, [this]() {
@@ -54,7 +54,7 @@ void PenCursorEffectConfig::save()
 
 void PenCursorEffectConfig::defaults()
 {
-    m_urlRequester->setUrl(QUrl::fromLocalFile(QStringLiteral("/usr/share/kwin/effects/pen-point-cursor.svg")));
+    m_urlRequester->setUrl(QUrl::fromLocalFile(QStringLiteral("/usr/share/kwin/effects/kwin_pen_cursor/pen-point-cursor.svg")));
     setNeedsSave(true);
     KCModule::defaults();
 }

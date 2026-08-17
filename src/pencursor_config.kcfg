@@ -6,7 +6,7 @@
     <kcfgfile name="pencursorrc"/>
     <group name="General">
         <entry name="CursorPath" type="String">
-            <default>/usr/share/kwin/effects/pen-point-cursor.svg</default>
+            <default>/usr/share/kwin/effects/kwin_pen_cursor/pen-point-cursor.svg</default>
         </entry>
     </group>
 </kcfg>

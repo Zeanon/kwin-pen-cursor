@@ -64,6 +64,9 @@ add_library(kwin_pencursor MODULE
     src/overlay_renderer.cpp
 )
 
+set_target_properties(kwin_pencursor PROPERTIES PREFIX "")
+set_target_properties(kwin_pencursor PROPERTIES OUTPUT_NAME "pencursor")
+
 target_include_directories(kwin_pencursor PRIVATE
     ${KWIN_EFFECT_INCLUDE_DIR}
     ${CMAKE_CURRENT_BINARY_DIR}
@@ -108,7 +111,7 @@ target_link_libraries(kwin_pencursor_config
 
 # Install paths
 if(NOT PLUGIN_INSTALL_DIR)
-    set(PLUGIN_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/lib/qt6/plugins")
+    set(PLUGIN_INSTALL_DIR "${CMAKE_INSTALL_PREFIX}/lib/x86_64-linux-gnu/qt6/plugins")
 endif()
 
 if(NOT DATA_INSTALL_DIR)
@@ -126,12 +129,12 @@ install(TARGETS kwin_pencursor_config
 
 # Install metadata
 install(FILES src/pencursor.json
-    DESTINATION ${DATA_INSTALL_DIR}/kwin/effects
+    DESTINATION ${DATA_INSTALL_DIR}/kwin/effects/kwin_pen_cursor
 )
 
 # Install SVG cursor
 install(FILES pen-point-cursor.svg
-    DESTINATION ${DATA_INSTALL_DIR}/kwin/effects
+    DESTINATION ${DATA_INSTALL_DIR}/kwin/effects/kwin_pen_cursor
 )
 
 # Configure and install AppStream metadata
@@ -181,4 +184,4 @@ ki18n_install(po)
 
 message(STATUS "Building Pen Cursor Effect for KWin 6")
 message(STATUS "  Plugin install dir: ${PLUGIN_INSTALL_DIR}/kwin/effects/plugins")
-message(STATUS "  Data install dir: ${DATA_INSTALL_DIR}/kwin/effects")
+message(STATUS "  Data install dir: ${DATA_INSTALL_DIR}/kwin/effects/kwin_pen_cursor")

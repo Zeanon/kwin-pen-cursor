@@ -23,7 +23,7 @@ PenCursorEffect::PenCursorEffect()
     
     auto config = KSharedConfig::openConfig(QStringLiteral("pencursorrc"));
     auto group = config->group(QStringLiteral("General"));
-    m_cursorPath = group.readEntry("CursorPath", "/usr/share/kwin/effects/pen-point-cursor.svg");
+    m_cursorPath = group.readEntry("CursorPath", "/usr/share/kwin/effects/kwin_pen_cursor/pen-point-cursor.svg");
     
     m_overlay->setCursorPath(m_cursorPath);
     
@@ -86,7 +86,7 @@ void PenCursorEffect::reconfigure(ReconfigureFlags flags)
 {
     auto config = KSharedConfig::openConfig(QStringLiteral("pencursorrc"));
     auto group = config->group(QStringLiteral("General"));
-    QString newCursorPath = group.readEntry("CursorPath", "/usr/share/kwin/effects/pen-point-cursor.svg");
+    QString newCursorPath = group.readEntry("CursorPath", "/usr/share/kwin/effects/kwin_pen_cursor/pen-point-cursor.svg");
     
     if (m_cursorPath != newCursorPath) {
         m_cursorPath = newCursorPath;

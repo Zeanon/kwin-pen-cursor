@@ -24,15 +24,25 @@ PenCursorEffectConfig::PenCursorEffectConfig(QObject *parent, const KPluginMetaD
     m_urlRequester = new KUrlRequester(widget());
     m_urlRequester->setNameFilters({QStringLiteral("*.svg")});
     m_urlRequester->setMode(KFile::File | KFile::ExistingOnly);
+    m_hideOnTouchCheckBox = new QCheckBox(widget());
     
+    layout->addRow(i18nd("kwin_pencursor", "Hide on touch:"), m_hideOnTouchCheckBox);
     layout->addRow(i18nd("kwin_pencursor", "Cursor SVG:"), m_urlRequester);
-    
+
     auto config = KSharedConfig::openConfig(QStringLiteral("pencursorrc"));
     auto group = config->group(QStringLiteral("General"));
+
     QString cursorPath = group.readEntry("CursorPath", "/usr/share/kwin/effects/kwin_pen_cursor/pen-point-cursor.svg");
     m_urlRequester->setUrl(QUrl::fromLocalFile(cursorPath));
+
+    bool hideOnTouch = group.readEntry("HideOnTouch", true);
+    m_hideOnTouchCheckBox->setCheckState(hideOnTouch ? Qt::Checked : Qt::Unchecked);
     
     connect(m_urlRequester, &KUrlRequester::textChanged, this, [this]() {
+        setNeedsSave(true);
+    });
+
+    connect(m_hideOnTouchCheckBox, &QCheckBox::checkStateChanged, this, [this]() {
         setNeedsSave(true);
     });
 }
@@ -42,6 +52,7 @@ void PenCursorEffectConfig::save()
     auto config = KSharedConfig::openConfig(QStringLiteral("pencursorrc"));
     auto group = config->group(QStringLiteral("General"));
     group.writeEntry("CursorPath", m_urlRequester->url().toLocalFile());
+    group.writeEntry("HideOnTouch", m_hideOnTouchCheckBox->checkState() == Qt::Checked);
     config->sync();
     
     KCModule::save();
@@ -55,6 +66,7 @@ void PenCursorEffectConfig::save()
 void PenCursorEffectConfig::defaults()
 {
     m_urlRequester->setUrl(QUrl::fromLocalFile(QStringLiteral("/usr/share/kwin/effects/kwin_pen_cursor/pen-point-cursor.svg")));
+    m_hideOnTouchCheckBox->setCheckState(Qt::Checked);
     setNeedsSave(true);
     KCModule::defaults();
 }

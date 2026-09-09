@@ -15,6 +15,10 @@ namespace KWin
 
 bool PenCursorEffect::shouldShowOverlay() const
 {
+    if (m_penTipDown && !m_hideOnTouch) {
+        return true;
+    }
+
     if (!m_penInProximity || m_penTipDown) {
         return false;
     }
@@ -53,7 +57,8 @@ bool PenCursorEffect::shouldShowOverlay() const
         QByteArray shapeName = shapeSource->shape();
         return shapeName == "default" || shapeName == "arrow" || 
                shapeName == "left_ptr" || shapeName == "crosshair" ||
-               shapeName == "cross" || shapeName.isEmpty();
+               shapeName == "cross" || shapeName == "pencil" ||
+               shapeName.isEmpty();
     }
     
     return false;

@@ -24,6 +24,7 @@ PenCursorEffect::PenCursorEffect()
     auto config = KSharedConfig::openConfig(QStringLiteral("pencursorrc"));
     auto group = config->group(QStringLiteral("General"));
     m_cursorPath = group.readEntry("CursorPath", "/usr/share/kwin/effects/kwin_pen_cursor/pen-point-cursor.svg");
+    m_hideOnTouch = group.readEntry("HideOnTouch", true);
     
     m_overlay->setCursorPath(m_cursorPath);
     

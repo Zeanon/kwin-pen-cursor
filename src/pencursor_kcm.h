@@ -7,6 +7,7 @@
 #define PENCURSOR_KCM_H
 
 #include <KCModule>
+#include <QCheckBox>
 
 class KUrlRequester;
 
@@ -23,6 +24,7 @@ public Q_SLOTS:
 
 private:
     KUrlRequester *m_urlRequester;
+    QCheckBox *m_hideOnTouchCheckBox;
 };
 
 #endif

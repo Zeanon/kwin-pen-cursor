@@ -43,7 +43,7 @@ void PenCursorEffect::onPenPositionChanged(const QPointF &position)
 {
     // For native Wayland apps, use the provided position
     // For XWayland, the polling timer will handle it
-    if (m_penInProximity && !m_penTipDown) {
+    if (m_penInProximity && (!m_penTipDown || !m_hideOnTouch)) {
         updateOverlayVisibility();
     }
 }
@@ -51,11 +51,13 @@ void PenCursorEffect::onPenPositionChanged(const QPointF &position)
 void PenCursorEffect::onPenTipDown()
 {
     m_penTipDown = true;
-    if (m_overlay->isVisible()) {
-        m_overlay->hideOverlay();
-    } else {
-        // If overlay wasn't visible but should be, hide it anyway
-        m_overlay->hide();
+    if (m_hideOnTouch) {
+        if (m_overlay->isVisible()) {
+            m_overlay->hideOverlay();
+        } else {
+            // If overlay wasn't visible but should be, hide it anyway
+            m_overlay->hide();
+        }
     }
 }
 

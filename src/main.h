@@ -40,6 +40,7 @@ private Q_SLOTS:
 private:
     bool shouldShowOverlay() const;
     void updateOverlayVisibility();
+    void onPenTipDown_temp();
     
     std::unique_ptr<PenInputListener> m_monitor;
     std::unique_ptr<OverlayRenderer> m_overlay;
@@ -47,6 +48,7 @@ private:
     bool m_penInProximity = false;
     bool m_penTipDown = false;
     QString m_cursorPath;
+    bool m_hideOnTouch = true;
 };
 
 }

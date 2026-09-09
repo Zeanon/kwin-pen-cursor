@@ -8,5 +8,8 @@
         <entry name="CursorPath" type="String">
             <default>/usr/share/kwin/effects/kwin_pen_cursor/pen-point-cursor.svg</default>
         </entry>
+        <entry name="HideOnTouch" type="Bool">
+            <default>true</default>
+        </entry>
     </group>
 </kcfg>

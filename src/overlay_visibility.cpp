@@ -15,11 +15,7 @@ namespace KWin
 
 bool PenCursorEffect::shouldShowOverlay() const
 {
-    if (m_penTipDown && !m_hideOnTouch) {
-        return true;
-    }
-
-    if (!m_penInProximity || m_penTipDown) {
+    if (!m_penInProximity || (m_penTipDown && m_hideOnTouch)) {
         return false;
     }
     

@@ -1,0 +1,8 @@
+<svg height="32" width="32" fill="#fff" stroke="#000" stroke-width="0.25" xmlns="http://www.w3.org/2000/svg">
+  <path d="m 13.8787,15.2926 1.4139,-1.4139 q 0.7074,-0.7074 1.4148,0 l 1.4139,1.4139 q 0.7074,0.7074 0,1.4148 l -1.4139,1.4139 q -0.7074,0.7074 -1.4148,0 l -1.4139,-1.4139 q -0.7074,-0.7074 0,-1.4148"/>
+  <rect width="2.25" height="1.25" x="9.875" y="15.375" ry="0.375" rx="0.375"/>
+  <rect width="1.25" height="2.25" x="15.375" y="9.875" ry="0.375" rx="0.375"/>
+  <rect width="2.25" height="1.25" x="19.875" y="15.375" ry="0.375" rx="0.375"/>
+  <rect width="1.25" height="2.25" x="15.375" y="19.875" ry="0.375" rx="0.375"/>
+  <path id="hotspot" d="m16 16h1v1h-1z" display="none" fill="#333" stroke-width="0"/>
+</svg>
